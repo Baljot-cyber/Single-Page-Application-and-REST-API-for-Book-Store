@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8" />
+		<meta name="viewport" content="width=device-width", initial-scale="1.0" />
+		<title>Book Store</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="style/main.css">
+		<script type="module" src="./router.js" defer></script>
+	</head>
+	<body>
+		<!-- <p style="background-image: url('book store wallpaper.jpg');"> -->
+
+		<aside class="hidden"><p></p></aside>
+		<header>
+			<h1>Book Store</h1>
+			<p>&nbsp;</p>
+		</header>
+		<nav>
+			<ul>
+				<li><a href="/home">Home</a></li>
+				<li><a href="/register">Register</a></li>
+				<li><a href="/foo">Foo</a></li>
+				<li><a href="/login">Log in</a></li>
+				<li><a href="/logout">Log out</a></li>
+
+				<li><a href="/stockLevel">Stock level</a></li>
+				<li><a href="/addBook">Add Book</a></li>
+				<!-- <li><a href="/bookDetail">Add Book</a></li> -->
+
+			</ul>
+		</nav>
+		<main>
+			
+			<h1 hidden = true style="color:orange" id = "cart_t" >shopping cart:</h1>
+
+			<p hidden = true id = "p_items" style="color:blue">Items:</p>
+			<h1 hidden = true id = "items">0</h1>
+			<p hidden = true id = "p_total" style="color:blue" >Total:</p>
+
+			<h1 hidden = true id = "total">0</h1>
+
+			<article>
+			</article>
+		</main>
+		<footer>
+			<p>&nbsp;</p>
+		</footer>
+	</body>
+
+	<!-- HOME PAGE -->
+	<template id="home">
+
+		
+		<table>
+		<tr>
+
+		<td><h2><label>Book name</label></h2>
+		<p id="bookName"></p></td>
+
+		<td><h2><label>Book cover</label></h2><img width = "400px" height="300px"></td0>
+		<!-- BUY BOOK BUTTON -->
+		<td><button id = "cart" type='click'>Add to cart</button></td>
+		</tr>
+		</table>
+		
+
+	</template>
+
+
+	<template id="login">
+		<form name="login">
+			<p><label for="email">Username</label><br /><input type="text" name="user" placeholder="username" /></p>
+			<p><label for="pass">Password</label><br /><input type="password" name="pass" placeholder="password" /></p>
+			<p><button type="submit">Log in</button></p>
+		</form>
+	</template>
+	<template id="register">
+		<form name="register">
+			<p><label for="name">Username</label><br /><input type="text" name="user" placeholder="full name" /></p>
+			<p><label for="pass">Password</label><br /><input type="password" name="pass" placeholder="password" /></p>
+			<p><button type="submit">Create account</button></p>
+		</form>
+	</template>
+	<template id="logout">
+			<p>Do you want to log out?</p>
+			<p><button>OK</button><button>Cancel</button></p>
+	</template>
+	<template id="foo">
+		<form name="upload" method="post">
+			<p><label for="pass">Choose a file</label><br /><input type="file" name="file" /></p>
+			<p><button type="submit">Upload</button></p>
+		</form>
+	</template>
+
+
+	<!-- ADD BOOK STORE PAGE -->
+	<template id = "addBook">
+
+
+		<!-- BOOK NAME -->
+		<form id = "addBook">
+		<!-- <p>Welcome To The Stock Level</p> -->
+		<p><label for = "bookName">Book Name </label></br /><input type="text" name="bookName" placeholder="bookName" height="20px" width="250px"></p>
+
+		<!-- AUTHOR NAME -->
+		
+		<p><label for = "authorName">Author Name</label></br /><input type="text" name="authorName" placeholder="authorName" height="20px" width="250px"></p>
+
+		<!-- PUBLISH DATE -->
+		
+		<p><label for = "publishDate">Publish Date</label></br /><input type="text" name="publishDate" placeholder="publishDate" height="20px" width="250px"></p>
+		<!-- ISBN NUMBER -->
+		<p><label for = "ISBNnumber">ISB Nnumber</label></br /><input type="text" name="isbn_num" placeholder="ISBNnumber" height="20px" width="250px"></p>
+
+
+
+		<!-- BOOK DESCRIPTION -->
+		<p><label for="bookDescription">Book Description:</label></p>
+		<textarea id="bookDescription" name="bookDescription" rows="4" cols="50">
+		Enter Book Description...
+		</textarea>
+
+		<!-- FRONT BOOK COVER PICTURE -->
+		<p><label name="upload front cover" </label><br /></p>
+		<p><label for="bookCover">Front Cover Image</label><br /><input type="file" name="file" /></p>
+	
+		
+		
+		<!-- SLIDER TRADE PRICE -->
+		<p><label for ="tradeSlider">Trade Price</label><br /></p>
+		
+		<div class='tradeSlider'>
+			<input type='range' min='1' max='100' value='1' class='slider' name = "trade_price" id='trade_price'>
+		
+			<p>Price: £ <span id="tradeSliderOut"></span></p>
+		</div>
+
+
+		<!-- SLIDER RETAIL PRICE -->
+		<p><label for ="retailSlider">Retail Price</label><br /></p>
+		
+		<div class='retailSlider'>
+			<input type='range' min='1' max='100' value='1' class='slider' name = "retail_price" id='retail_price'>
+			
+			
+			<p>Price: £ <span id="retailSliderOut"></span></p>
+		</div>
+
+		
+		<!-- SLIDER QUANTITY -->
+		<p><label for ="quanitySlider">Quantity Price</label><br /></p>
+
+		<div class='quanitySlider'>
+			<input type='range' min='1' max='20' value='1' class='slider' name = "quantity" id='quantity'>
+			
+			
+			<p>Quanity: <span id="quanitySliderOut"></span></p>
+		</div>
+
+		
+
+
+		<!-- ADD BOOK BUTTON -->
+		<p><button type='submit'>Add book</button></p>
+		</form>
+
+	</template>
+
+
+
+	<!-- DISPLAY BOOK DETAILS PAGE -->
+	<template id = "stockLevel">
+		<table>
+		<tr>
+		<td><h2><label>Book name</label></h2>
+		<p id="bookName"></p></td>
+
+		<td><h2><label>ISBN number</label></h2>
+		<p id="ISBNnumber"></p></td>
+
+		<td><h2><label>Stock level</label></h2>
+		<p id="quantity"></p></td>
+
+		<td><h2><label>Book cover</label></h2><img width = "400px" height="300px"></td0>
+
+		</tr>
+		</table>
+	
+	</template>
+
+
+	<template id = "bookDetail">
+
+		<table width = "500">
+		<tr>
+		<td><h2><label>Book Name</label></h2>
+		<p id="bookName"></p></td>
+
+		<td><h2><label>Author Name</label></h2>
+		<p id="authorName"></p></td>
+
+		<td><h2><label>Publish Date</label></h2>
+		<p id="publishDate"></p></td>
+
+		<td><h2><label>Book Description</label></h2>
+		<p id="bookDescription"></p></td>
+
+		<td><h2><label>picture</label></h2><img  width = "400px" height = "300px"></td>
+		</tr>
+	</table>
+
+
+	</template>
+
+
+	<template id="quote">
+		<section>
+			<h2></h2>
+			<p></p>
+		</section>
+	</template>
+</html>
